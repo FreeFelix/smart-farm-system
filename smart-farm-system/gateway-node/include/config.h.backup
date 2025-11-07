@@ -1,0 +1,87 @@
+#ifndef CONFIG_H
+#define CONFIG_H
+
+// ==================== GATEWAY CONFIGURATION ====================
+// Hardware: ESP32 DevKit with ILI9341 TFT Display
+// Display: ILI9341 2.8" 320x240 TFT Color Screen
+
+// WiFi Configuration - UPDATE THESE FOR YOUR NETWORK
+#define WIFI_SSID "SmartFarm_Demo"       // Demo SSID that won't exist - will trigger AP mode
+#define WIFI_PASSWORD "demo123"
+#define WIFI_TIMEOUT_MS 10000            // Shorter timeout for demo
+
+// MQTT Broker Configuration
+#define MQTT_BROKER "broker.hivemq.com"  // Free broker for testing
+// #define MQTT_BROKER "mqtt.thingspeak.com"  // Alternative
+#define MQTT_PORT 1883
+#define MQTT_CLIENT_ID "SmartFarm_Gateway"
+#define MQTT_USERNAME ""  // Leave empty for HiveMQ
+#define MQTT_PASSWORD ""
+
+// MQTT Topics
+#define TOPIC_COW_DATA "smartfarm/cow/data"
+#define TOPIC_MILK_DATA "smartfarm/milk/data"
+#define TOPIC_GATEWAY_STATUS "smartfarm/gateway/status"
+#define TOPIC_COMMANDS "smartfarm/commands"
+
+// LoRa Configuration
+#define LORA_FREQUENCY 915E6  // 915 MHz for US, 868E6 for EU
+#define LORA_SS_PIN 16
+#define LORA_RST_PIN 14
+#define LORA_DIO0_PIN 26
+
+// TFT Display Configuration (ILI9341 320x240)
+// Note: TFT_WIDTH and TFT_HEIGHT are defined by TFT_eSPI library
+#define TFT_MISO 19
+#define TFT_MOSI 23
+#define TFT_SCLK 18
+#define TFT_CS   5
+#define TFT_DC   2
+#define TFT_RST  4
+#define TFT_BL   15   // Backlight control
+
+// Touch Screen (Optional - XPT2046)
+#define TOUCH_CS 21
+#define TOUCH_IRQ 22
+
+// SD Card Configuration (for local storage)
+#define SD_CS 17
+// Note: SD uses same SPI pins as TFT (shared bus)
+// MOSI=23, MISO=19, SCK=18 (hardware SPI)
+
+// Device IDs
+#define DEVICE_ID_COW "COW001"
+#define DEVICE_ID_MILK "MILK001"
+
+// Status LED
+#define STATUS_LED 13
+#define ERROR_LED 12
+
+// Timing Configuration
+#define DATA_SEND_INTERVAL 30000      // Send to cloud every 30 seconds
+#define STATUS_UPDATE_INTERVAL 1000   // Update display every 1 second
+#define RECONNECT_INTERVAL 5000       // Try reconnecting every 5 seconds
+#define WATCHDOG_TIMEOUT 60000        // Watchdog timeout 60 seconds
+#define DATA_SAVE_INTERVAL 60000      // Save to SD card every 60 seconds
+
+// Data Buffer and Storage
+#define MAX_DEVICES 50                // Support up to 50 devices
+#define MAX_COW_NODES 30
+#define MAX_MILK_STATIONS 20
+#define DATA_BUFFER_SIZE 1024         // Larger buffer for ESP32-S3
+#define HISTORY_SIZE 100              // Keep last 100 readings per device
+
+// Database Configuration (SQLite on SD card)
+#define DB_FILENAME "/sd/farmdata.db"
+#define LOG_FILENAME "/sd/system.log"
+
+// Web Server Configuration
+#define WEB_SERVER_PORT 80
+#define WEB_USERNAME "admin"
+#define WEB_PASSWORD "smartfarm2025"
+
+// Debug Configuration
+#define DEBUG_SERIAL true
+#define DEBUG_VERBOSE false
+
+#endif // CONFIG_H

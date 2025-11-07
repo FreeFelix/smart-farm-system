@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "author": "Smart Farm System",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-breadboard", "id": "bb1", "top": -100, "left": -300, "attrs": {} },
+    { "type": "wokwi-ili9341", "id": "tft1", "top": -250, "left": 200, "attrs": {} },
+    { "type": "wokwi-led", "id": "led_status", "top": -50, "left": -200, "attrs": { "color": "green" } },
+    { "type": "wokwi-led", "id": "led_error", "top": 20, "left": -200, "attrs": { "color": "red" } },
+    { "type": "wokwi-resistor", "id": "r1", "top": -50, "left": -150, "attrs": { "value": "220" } },
+    { "type": "wokwi-resistor", "id": "r2", "top": 20, "left": -150, "attrs": { "value": "220" } },
+    { "type": "wokwi-pushbutton", "id": "btn_page", "top": 100, "left": -200, "attrs": { "color": "blue" } }
+  ],
+  "connections": [
+    [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+    [ "bb1:bp.1", "esp:GND.1", "black", [ "h0" ] ],
+    [ "bb1:tp.1", "esp:3V3", "red", [ "h0" ] ],
+    [ "tft1:VCC", "bb1:tn.5", "red", [ "v0" ] ],
+    [ "tft1:GND", "bb1:bn.5", "black", [ "v0" ] ],
+    [ "tft1:CS", "esp:D5", "orange", [ "v0" ] ],
+    [ "tft1:RESET", "esp:D4", "yellow", [ "v0" ] ],
+    [ "tft1:DC", "esp:D2", "green", [ "v0" ] ],
+    [ "tft1:SDI", "esp:D23", "blue", [ "v0" ] ],
+    [ "tft1:SCK", "esp:D18", "purple", [ "v0" ] ],
+    [ "tft1:LED", "esp:D15", "white", [ "v0" ] ],
+    [ "tft1:SDO", "esp:D19", "gray", [ "v0" ] ],
+    [ "led_status:A", "esp:D13", "green", [ "v0" ] ],
+    [ "led_status:C", "r1:1", "black", [ "v0" ] ],
+    [ "r1:2", "bb1:bn.10", "black", [ "v0" ] ],
+    [ "led_error:A", "esp:D12", "red", [ "v0" ] ],
+    [ "led_error:C", "r2:1", "black", [ "v0" ] ],
+    [ "r2:2", "bb1:bn.11", "black", [ "v0" ] ],
+    [ "btn_page:1.l", "esp:D0", "purple", [ "v0" ] ],
+    [ "btn_page:1.r", "bb1:bn.15", "black", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}

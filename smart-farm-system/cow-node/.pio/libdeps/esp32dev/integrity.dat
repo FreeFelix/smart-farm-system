@@ -1,0 +1,6 @@
+adafruit/Adafruit MPU6050@^2.2.6
+mikalhart/TinyGPSPlus@^1.0.3
+milesburton/DallasTemperature@^3.9.0
+adafruit/Adafruit Unified Sensor@^1.1.14
+sandeepmistry/LoRa@^0.8.0
+paulstoffregen/OneWire@^2.3.7
